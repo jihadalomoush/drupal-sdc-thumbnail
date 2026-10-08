@@ -30,9 +30,6 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write # required for OIDC trusted publishing
     env:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
     steps:
@@ -41,6 +38,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm install -g npm@11 # trusted publishing needs npm >= 11.5 (npm 12 needs node >= 22)
       - run: npm ci
       - run: npm publish --access public
+        env:
+          # NPM_TOKEN must be an Automation (or Granular read+write) token so it
+          # publishes non-interactively past account 2FA.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
