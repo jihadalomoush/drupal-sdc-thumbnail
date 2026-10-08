@@ -1,6 +1,6 @@
 {
   "name": "drupal-sdc-thumbnail",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate static thumbnail images for Drupal Single Directory Components (SDC) by screenshotting their Storybook stories, for use as Drupal Canvas component previews.",
   "type": "module",
   "bin": {

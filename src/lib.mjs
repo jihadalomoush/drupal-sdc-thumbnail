@@ -31,6 +31,14 @@ export const DEFAULT_CONFIG = {
   // Per-component story override. Key = component machine name, value = story
   // name (string) or zero-based index (number). Example: { "card": 2 }.
   stories: {},
+  // Device pixel ratio the page is rendered at. Capturing at 2x (or more) gives
+  // a larger source raster so small components (e.g. a single icon glyph)
+  // downscale crisply into the output instead of being upscaled and blurry.
+  // Clamped to 1..8. Higher = sharper but larger files and more memory.
+  scale: 2,
+  // When true, sharp will not upscale an element smaller than the output box
+  // (keeps genuinely tiny elements crisp-but-small instead of blown up to fill).
+  noEnlarge: false,
 };
 
 // Merge file config (sdc-thumbnail.config.json, looked up in the theme then the

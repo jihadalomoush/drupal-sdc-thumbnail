@@ -72,6 +72,9 @@ Options:
 --format <webp|png>  Output format (default webp)
 --width <px>         Output width (default 600)
 --height <px>        Output height (default 400)
+--scale <n>          Capture device pixel ratio, 1..8 (default 2). Higher =
+                     sharper small components, larger files / more memory
+--no-enlarge         Do not upscale elements smaller than the output box
 --only-missing       Skip components that already have a thumbnail
 --help
 ```
@@ -88,6 +91,7 @@ override it.
   "width": 600,
   "height": 400,
   "format": "webp",
+  "scale": 2,
   "viewport": { "width": 600, "height": 900 },
   "viewports": { "media-banner": 1200, "card-pricing": 1100 },
   "stories": { "card": "Image left", "button": 2 }
@@ -100,6 +104,12 @@ override it.
 - `viewports` — per-component width (or `{ width, height }`) for full-width or
   multi-column components that need more room.
 - `stories` — per-component story selection by name or 0-based index.
+- `scale` — capture device pixel ratio (1..8, default 2). The page renders at
+  this DPR so small components (e.g. a single icon glyph) have a large enough
+  raster to downscale crisply instead of being upscaled and blurry. Higher =
+  sharper but larger files and more memory. Equivalent CLI flag: `--scale`.
+- `noEnlarge` (CLI `--no-enlarge`) — do not upscale an element smaller than the
+  output box; keeps genuinely tiny elements crisp-but-small. Default off.
 
 ## Skipped components
 

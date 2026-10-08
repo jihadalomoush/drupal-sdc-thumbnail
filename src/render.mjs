@@ -49,10 +49,13 @@ async function shoot(page, record, chosen, config) {
   if (!box || box.width < 2 || box.height < 2) throw new Error('component rendered empty');
 
   // Never crop: capture the element, then letterbox-fit it into the target.
+  // The page renders at config.scale× DPR, so the raw raster is already large
+  // enough to downscale crisply (no blurry upscaling of tiny components).
   const raw = await el.screenshot({ type: 'png' });
   const pipeline = sharp(raw).resize(config.width, config.height, {
     fit: 'contain',
     background: config.background,
+    withoutEnlargement: config.noEnlarge === true,
   });
   const buffer =
     config.format === 'png'
@@ -82,7 +85,11 @@ async function installAssetRewrite(page, themeUrlBase) {
 // need a hand-made thumbnail.
 export async function renderAll(records, picks, config, { onlyMissing = false } = {}) {
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: config.viewport, ignoreHTTPSErrors: true });
+  const page = await browser.newPage({
+    viewport: config.viewport,
+    ignoreHTTPSErrors: true,
+    deviceScaleFactor: config.scale ?? 2,
+  });
   await installAssetRewrite(page, config.themeUrlBase);
   const results = [];
   try {
