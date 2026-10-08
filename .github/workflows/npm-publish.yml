@@ -37,10 +37,13 @@ jobs:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
     steps:
       - uses: actions/checkout@v4
+      # No registry-url: it writes an .npmrc placeholder _authToken that shadows
+      # OIDC trusted publishing on current npm. npm defaults to the npmjs
+      # registry, and OIDC provides the credential.
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org/
       - run: npm install -g npm@11 # trusted publishing needs npm >= 11.5 (npm 12 needs node >= 22)
+      - run: node -v && npm -v # diagnostic: confirm npm >= 11.5 so OIDC engages
       - run: npm ci
       - run: npm publish --access public
