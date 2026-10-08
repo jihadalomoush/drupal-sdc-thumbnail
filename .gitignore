@@ -1,0 +1,11 @@
+node_modules/
+*.tgz
+*.log
+
+# Local, project-specific config (ship the example instead).
+sdc-thumbnail.config.json
+
+# Playwright / test output
+test-results/
+playwright-report/
+.cache/

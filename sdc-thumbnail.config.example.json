@@ -1,0 +1,11 @@
+{
+  "themePath": "web/themes/custom/my_theme",
+  "siteUrl": "https://my-site.ddev.site",
+  "width": 600,
+  "height": 400,
+  "format": "webp",
+  "background": "#ffffff",
+  "viewport": { "width": 600, "height": 900 },
+  "viewports": { "media-banner": 1200, "hero-side-by-side": 1200 },
+  "stories": { "card": "Image left" }
+}

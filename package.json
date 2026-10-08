@@ -1,0 +1,53 @@
+{
+  "name": "@vardot/drupal-sdc-thumbnail",
+  "version": "0.1.0",
+  "description": "Generate static thumbnail images for Drupal Single Directory Components (SDC) by screenshotting their Storybook stories, for use as Drupal Canvas component previews.",
+  "type": "module",
+  "bin": {
+    "sdc-thumbnail": "src/index.mjs"
+  },
+  "exports": {
+    ".": "./src/lib.mjs"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "sdc-thumbnail.config.example.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "thumbnails": "node src/index.mjs",
+    "test": "node --test"
+  },
+  "keywords": [
+    "drupal",
+    "sdc",
+    "single-directory-components",
+    "canvas",
+    "storybook",
+    "thumbnail",
+    "screenshot",
+    "playwright",
+    "vartheme",
+    "varbase"
+  ],
+  "author": "Vardot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jihadalomoush/drupal-sdc-thumbnail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jihadalomoush/drupal-sdc-thumbnail/issues"
+  },
+  "homepage": "https://github.com/jihadalomoush/drupal-sdc-thumbnail#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0",
+    "sharp": "^0.33.0"
+  }
+}
