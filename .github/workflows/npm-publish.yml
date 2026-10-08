@@ -1,4 +1,4 @@
-# Publishes @vardot/drupal-sdc-thumbnail to npmjs when a GitHub Release is
+# Publishes drupal-sdc-thumbnail to npmjs when a GitHub Release is
 # published (or when run manually from the Actions tab).
 # https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
